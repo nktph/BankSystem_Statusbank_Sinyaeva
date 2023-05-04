@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body style="background: {% block bgcolor %}{% endblock %}">
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'automatedsystemstatusbank:home' %}">
+          <img alt="logo" src="https://stbank.by/local/templates/stbank_by/img/content/logo2-20years_240%D1%8538.svg" width="150" height="30" loading="lazy">
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active"
+             aria-current="page"
+             href="{% url 'automatedsystemstatusbank:home' %}">Главная</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             id="navbarDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Клиенты
+          </a>
+          <ul class="dropdown-menu"
+              aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item"
+            href="{% url 'automatedsystemstatusbank:clients' %}">Просмотреть клиентов</a></li>
+            <li><a class="dropdown-item"
+            href="{% url 'automatedsystemstatusbank:add_client' %}">Добавить клиента</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             id="navbarDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Депозиты
+          </a>
+          <ul class="dropdown-menu"
+              aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item"
+            href="{% url 'automatedsystemstatusbank:deposits' %}">Просмотреть депозиты</a></li>
+            <li><a class="dropdown-item"
+            href="{% url 'automatedsystemstatusbank:add_deposit' %}">Добавить депозит</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="btn btn-outline-danger" id="contact-tab" data-toggle="tab" href="{% url 'logout' %}" role="tab" aria-controls="credits" aria-selected="false">Выйти из системы</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</body>
+</html>

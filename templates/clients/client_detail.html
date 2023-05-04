@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Информация о клиенте{% endblock %}
+{% block content %}
+
+<div class="rounded" style="margin-top: 5%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%; background-color: rgb(33,37,41); color: #e1e1e1">
+    <hr>
+    <div style="margin-top: 30px; margin-bottom: 30px; text-align: center">
+        <h3>Клиент {{ client }}</h3>
+    </div>
+    <hr>
+
+    <div style="margin-top: 30px; margin-bottom: 70px; text-align: center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+            <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+        </svg>
+        <legend>Паспортные данные</legend>
+    </div>
+
+    <div style="text-align: left">
+    <div class="row" style="margin-left: 10%">
+    <div class="col">
+        <h4 style="margin-top: 10px">Фамилия</h4>
+        {{ client.passport.last_name }}
+
+        <h4 style="margin-top: 10px">Имя</h4>
+        {{ client.passport.first_name }}
+
+        <h4 style="margin-top: 10px">Отчество</h4>
+        {{ client.passport.patronymic }}
+
+        <h4 style="margin-top: 10px">Пол</h4>
+        {{ client.passport.sex }}
+
+        <h4 style="margin-top: 10px">Гражданство</h4>
+        {{ client.passport.country_iso3code }}
+
+        <h4 style="margin-top: 10px">Дата рождения</h4>
+        {{ client.passport.birth_date }}
+    </div>
+    <div class="col">
+
+        <h4 style="margin-top: 10px">Серия и номер паспорта</h4>
+        {{ client.passport.series }}{{ client.passport.number }}
+
+        <h4 style="margin-top: 10px">Женат/Замужем</h4>
+        {% if client.passport.is_married %}
+            Да
+        {% else %}
+            Нет
+        {% endif %}
+
+        <h4 style="margin-top: 10px">Кем выдан</h4>
+        {{ client.passport.authority }}
+
+        <h4 style="margin-top: 10px">Дата выдачи</h4>
+        {{ client.passport.date_of_issue }}
+
+        <h4 style="margin-top: 10px">Срок действия</h4>
+        {{ client.passport.date_of_expire }}
+    </div>
+    </div>
+    <br>
+    <div class="container" style="text-align: center">
+        <a class="btn btn-outline-success" href="{% url 'automatedsystemstatusbank:edit_client_passport' client.id %}">Редактировать</a>
+    </div>
+
+    </div>
+
+    <hr>
+    <div style="margin-top: 30px; margin-bottom: 70px; text-align: center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+            <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+        </svg>
+        <legend>Прописка</legend>
+    </div>
+
+    <div style="text-align: left">
+        <div class="row" style="margin-left: 10%">
+            <div class="col">
+                <h4 style="margin-top: 10px">Страна</h4>
+                {{ client.passport.registration.address.country_iso3code }}
+                <h4 style="margin-top: 10px">Город</h4>
+                {{ client.passport.registration.address.city }}
+                <h4 style="margin-top: 10px">Улица</h4>
+                {{ client.passport.registration.address.street_name }}
+                <h4 style="margin-top: 10px">Дом</h4>
+                {{ client.passport.registration.address.building_number }}
+                <h4 style="margin-top: 10px">Квартира</h4>
+                {{ client.passport.registration.address.apartment_number }}
+                <h4 style="margin-top: 10px">Почтовый индекс</h4>
+                {{ client.passport.registration.address.post_code }}
+            </div>
+            <div class="col">
+                <h4 style="margin-top: 10px">Дата регистрации</h4>
+                {{ client.passport.registration.date_of_registration }}
+                <h4 style="margin-top: 10px">Кем выдана</h4>
+                {{ client.passport.registration.registration_authority }}
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <hr>
+    <div style="margin-top: 30px; margin-bottom: 70px; text-align: center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+            <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        <legend>Контактные данные</legend>
+    </div>
+
+    <div style="text-align: left">
+        <div class="row" style="margin-left: 10%">
+            <div class="col">
+                <h4 style="margin-top: 10px">Электронная почта</h4>
+                {{ client.email }}
+
+                <h4 style="margin-top: 10px">Мобильный телефон</h4>
+                {{ client.mobile_phone_number }}
+
+                <h4 style="margin-top: 10px">Домашний телефон</h4>
+                {{ client.home_phone_number }}
+            </div>
+            <div class="col">
+                <h4 style="margin-top: 10px">Компания</h4>
+                {{ client.company_name }}
+
+                <h4 style="margin-top: 10px">Должность</h4>
+                {{ client.position }}
+
+                <h4 style="margin-top: 10px">Доход</h4>
+                {{ client.income_per_month }}
+            </div>
+        </div>
+        <br>
+        <div class="container" style="text-align: center">
+            <a class="btn btn-outline-success" href="{% url 'automatedsystemstatusbank:edit_client_personal' client.id %}">Редактировать</a>
+        </div>
+    </div>
+        <hr>
+    <div style="margin-top: 30px; margin-bottom: 70px; text-align: center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+        <legend>Адрес проживания</legend>
+    </div>
+    <div class="row" style="text-align: left">
+        <div class="col" style="margin-left: 10%">
+                <h4 style="margin-top: 10px">Страна</h4>
+                {{ client.address_of_living.country_iso3code }}
+                <h4 style="margin-top: 10px">Город</h4>
+                {{ client.address_of_living.city }}
+            </div>
+            <div class="col">
+                <h4 style="margin-top: 10px">Улица</h4>
+                {{ client.address_of_living.street_name }}
+                <h4 style="margin-top: 10px">Дом</h4>
+                {{ client.address_of_living.building_number }}
+                <h4 style="margin-top: 10px">Квартира</h4>
+                {{ client.address_of_living.apartment_number }}
+                <h4 style="margin-top: 10px">Почтовый индекс</h4>
+                {{ client.address_of_living.post_code }}
+            </div>
+    </div>
+    <br>
+    <div class="container" style="text-align: center">
+        <a class="btn btn-outline-success" href="{% url 'automatedsystemstatusbank:edit_client_address' client.address_of_living.id %}">Редактировать</a>
+    </div>
+    <hr>
+        <div class="container" style="text-align: center">
+            <a class="btn btn-danger" href="{% url 'automatedsystemstatusbank:delete_client' client.id %}">Удалить клиента</a>
+        </div>
+    <hr>
+</div>
+
+{% endblock %}

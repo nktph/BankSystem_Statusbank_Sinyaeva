@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление нового клиента{% endblock %}
+
+{% block content %}
+
+<div class="rounded" style="margin-top: 5%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%; background-color: rgb(33,37,41); color: #e1e1e1">
+    <hr>
+    <h4 style="text-align: center; margin-bottom: 3%">Добавление нового клиента</h4>
+
+    <form method="POST" class="post-form">
+    {% csrf_token %}
+<hr>
+        <fieldset>
+            <div style="margin-top: 30px; margin-bottom: 5%; text-align: center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                <legend>Адреса</legend>
+            </div>
+            <div style="text-align: center; margin-left: 5%; margin-bottom: 5%">
+            {{ address_formset.management_form }}
+            <div class="row">
+                <div class="col">
+                    <h5>Адрес проживания</h5>
+                </div>
+                <div class="col">
+                    <h5>Адрес прописки</h5>
+                </div>
+            </div>
+            <div class="row">
+                {% for form in address_formset %}
+                    <div class="col">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+            </div>
+            </div>
+        </fieldset>
+    <hr>
+
+
+    <fieldset>
+            <div style="margin-top: 30px; margin-bottom: 70px; text-align: center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+                    <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+                </svg>
+                <legend>Прописка</legend>
+            </div>
+
+            <div style="margin-left: 5%; margin-bottom: 5%; text-align: center">
+                {{ registration_form }}
+            </div>
+
+    </fieldset>
+            <hr>
+
+
+
+    <fieldset>
+
+                <div style="margin-top: 50px; margin-bottom: 70px; text-align: center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                        <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+                    </svg>
+                    <legend>Паспортные данные</legend>
+                </div>
+
+                <div style="margin-left: 5%; margin-bottom: 5%; text-align: center">
+                    {{ passport_form.as_p }}
+                </div>
+
+    </fieldset>
+    <hr>
+
+    <fieldset>
+        <div style="margin-top: 30px; margin-bottom: 70px; text-align: center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            <legend>Персональные данные</legend>
+        </div>
+
+        <div style="text-align: center; margin-left: 5%; margin-bottom: 5%;">
+            {{ client_form.as_p }}
+        </div>
+
+    </fieldset>
+            <hr>
+    <div class="container" style="text-align: center">
+            <button type="submit" style="margin-bottom: 50px" class="btn btn-success">Сохранить</button>
+    </div>
+    </form>
+</div>
+
+{% endblock %}

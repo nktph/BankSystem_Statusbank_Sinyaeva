@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Клиенты{% endblock %}
+
+{% block content %}
+
+
+{% if clients %}
+    <h4 style="text-align: center; margin-top: 5%; margin-bottom: 3%">База клиентов Статусбанка</h4>
+    <table class="table table-hover table-dark" style="margin-bottom: 10%">
+    <caption>ОАО «СтатусБанк»</caption>
+  <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Отчество</th>
+      <th scope="col">Пол</th>
+      <th scope="col">Гражданство</th>
+      <th scope="col">Серия и номер паспорта</th>
+      <th scope="col"><a class="btn btn-outline-success" href="{% url 'automatedsystemstatusbank:add_client' %}">Новый</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for client in clients %}
+    <tr>
+      <th scope="row">{{ client.id }}</th>
+      <td>{{ client.passport.last_name }}</td>
+      <td>{{ client.passport.first_name }}</td>
+      <td>{{ client.passport.patronymic }}</td>
+      <td>{{ client.passport.sex }}</td>
+      <td>{{ client.passport.country_iso3code }}</td>
+      <td>{{ client.passport.series }} {{ client.passport.number }}</td>
+      <td><a class="btn btn-outline-info" style="alignment: left" href="{% url 'automatedsystemstatusbank:client_details' client.id %}">Перейти</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% else %}
+    <div class="container" style="text-align: center; margin-top: 20%">
+        <h4>Нет клиентов</h4>
+        <a style="text-align: center" class="btn btn-primary" href="{% url 'automatedsystemstatusbank:add_client' %}">Создать нового</a>
+    </div>
+{% endif %}
+
+
+{% endblock %}

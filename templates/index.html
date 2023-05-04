@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Приветствуем!{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+
+    <div class="rounded" style="text-align: center;margin-left: 10%; margin-right: 10%; background-color: rgb(33,37,41); color: #e1e1e1">
+        <hr>
+        <div class="row" style="text-align: center">
+            <div class="col">
+                <div class="card text-white bg-dark" style="width: 50%; text-align: center; margin-left: 25%">
+                    <img src="https://stbank.by/upload/medialibrary/stbank.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Добро пожаловать!</h3>
+                        <h5 class="card-subtitle mb-5 mt-5">Автоматизированная информационная система разработана с целью
+                                                    сокращения затрат времени на обслуживание клиентов отдела
+                                                    розничного бизнеса банка ОАО «СтатусБанк»
+                        </h5>
+                        <p class="card-text">Для начала работы, пожалуйста, авторизуйтесь</p>
+                    </div>
+                    <div class="card-body">
+                        <a href="accounts/login" class="btn btn-success">Авторизация</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+{% endblock %}

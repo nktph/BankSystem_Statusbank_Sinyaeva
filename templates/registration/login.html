@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="margin-top: 10%;" >
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-8">
+                <div class="card" style="width: 70%; alignment: center; background-color: rgb(33,37,41); color: #e1e1e1">
+                    <div class="card-body">
+                        <h3 class="card-title" style="text-align: center">Авторизация</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <p style="margin-left: 30px">{{ form.username.label_tag }}
+                                {{ form.username }}</p>
+                            <p style="margin-left: 110px">{{ form.password.label_tag }}
+                                {{ form.password }}</p>
+                            <div style=" text-align: center">
+                                <button type="submit" class="btn btn-success" style="text-align: center">Войти</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div style="margin-top: 5%; margin-left: 35%; margin-right: 35%; text-align: center; background-color: rgb(33,37,41);">
+{% if form.errors %}
+  <p style="color: red">Неверный логин или пароль. Повторите попытку.</p>
+{% endif %}
+
+
+</div>
+{% endblock %}

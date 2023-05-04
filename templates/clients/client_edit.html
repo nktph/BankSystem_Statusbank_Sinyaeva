@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование данных клиента{% endblock %}
+
+{% block content %}
+
+    <div class="rounded" style="margin-top: 5%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%; background-color: rgb(33,37,41); color: #e1e1e1">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            <hr>
+                <div style="text-align: center; margin-left: 5%; margin-bottom: 5%">
+                    <h2>{{ title }}</h2>
+                    <hr>
+                    {{ form.as_p }}
+                </div>
+
+            <div class="container" style="text-align: center">
+                <button type="submit" style="margin-bottom: 50px" class="btn btn-success">Сохранить</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Депозиты{% endblock %}
+
+{% block content %}
+
+
+{% if deposits %}
+    <h4 style="text-align: center; margin-top: 5%; margin-bottom: 3%">База депозитов Статусбанка</h4>
+    <table class="table table-hover table-dark" style="margin-bottom: 10%">
+    <caption>ОАО «СтатусБанк»</caption>
+  <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">ФИО вкладчика</th>
+      <th scope="col">Тип вклада</th>
+      <th scope="col">Сумма</th>
+      <th scope="col">Процент</th>
+      <th scope="col"><a class="btn btn-outline-success" href="{% url 'automatedsystemstatusbank:add_deposit' %}">Новый</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for deposit in deposits %}
+    <tr>
+      <th scope="row">{{ deposit.id }}</th>
+      <td>{{ deposit.client }}</td>
+      <td>{{ deposit.deposit_type }}</td>
+      <td>{{ deposit.deposit_sum }} {{ deposit.currency }}</td>
+      <td>{{ deposit.percentage }}</td>
+      <td><a class="btn btn-outline-info" style="alignment: left" href="{% url 'automatedsystemstatusbank:deposit_details' deposit.id %}">Перейти</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% else %}
+    <div class="container" style="text-align: center; margin-top: 20%">
+        <h4>Нет депозитов</h4>
+        <a style="text-align: center" class="btn btn-primary" href="{% url 'automatedsystemstatusbank:add_deposit' %}">Создать новый</a>
+    </div>{% endif %}
+
+{% endblock %}
